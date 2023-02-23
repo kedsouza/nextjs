@@ -16,6 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -41,5 +52,5 @@ jobs:
         with:
           app-name: 'kedsouza-node-18'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C0C602DD73E34F7BBA4396803B91598A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0AEEABB7234C482499E2A9033095DE96 }}
           package: .
